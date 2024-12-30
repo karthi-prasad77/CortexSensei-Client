@@ -1,60 +1,48 @@
-import React from "react";
-import { Link } from "react-scroll"; // Assuming you are using react-scroll for smooth scrolling
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa"; // Importing hamburger and close icons
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu open/close
+
+  // Toggle function for menu
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 shadow-lg bg-white">
-      <div className="flex justify-between items-center px-6 py-4 max-w-screen-xl mx-auto">
-        {/* Brand Logo / Name */}
-        <div className="text-2xl font-bold text-[#FF9933] font-poppins">
-          <Link to="home" smooth={true} duration={500}>
-            InnovMart
-          </Link>
-        </div>
+    <nav className="bg-gray-800 text-white py-4">
+      <div className="container mx-auto flex justify-between items-center px-6">
+        {/* Logo */}
+        <div className="text-2xl font-bold text-green-500">InnovMart</div>
 
-        {/* Navigation Links */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            className="text-lg text-gray-800 hover:text-[#FF9933] transition duration-300 cursor-pointer font-poppins"
-          >
-            Home
-          </Link>
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="text-lg text-gray-800 hover:text-[#FF9933] transition duration-300 cursor-pointer font-poppins"
-          >
-            About Us
-          </Link>
-          <Link
-            to="mission"
-            smooth={true}
-            duration={500}
-            className="text-lg text-gray-800 hover:text-[#FF9933] transition duration-300 cursor-pointer font-poppins"
-          >
-            Mission & Vision
-          </Link>
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
-            className="text-lg text-gray-800 hover:text-[#FF9933] transition duration-300 cursor-pointer font-poppins"
-          >
-            Contact
-          </Link>
+          <a href="#home" className="text-lg hover:text-green-500">Home</a>
+          <a href="#about" className="text-lg hover:text-green-500">About Us</a>
+          <a href="#mission-vision" className="text-lg hover:text-green-500">Mission & Vision</a>
+          <a href="#contact" className="text-lg hover:text-green-500">Contact</a>
         </div>
 
-        {/* Mobile Menu Icon (Hamburger) */}
+        {/* Hamburger Menu Button (Visible in mobile view) */}
         <div className="md:hidden flex items-center">
-          <button className="text-3xl text-[#138808]">
-            {/* You can add a hamburger icon here if needed */}
-            <span>&#9776;</span>
+          <button onClick={toggleMenu}>
+            {isMenuOpen ? (
+              <FaTimes size={30} className="text-white" /> // Close icon when menu is open
+            ) : (
+              <FaBars size={30} className="text-white" /> // Hamburger icon when menu is closed
+            )}
           </button>
         </div>
+      </div>
+
+      {/* Mobile Menu (Conditional Rendering) */}
+      <div
+        className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-gray-700 text-white px-6 py-4`}
+      >
+        <a href="#home" className="block py-2 text-lg hover:text-green-500">Home</a>
+        <a href="#about" className="block py-2 text-lg hover:text-green-500">About Us</a>
+        <a href="#mission-vision" className="block py-2 text-lg hover:text-green-500">Mission & Vision</a>
+        <a href="#contact" className="block py-2 text-lg hover:text-green-500">Contact</a>
       </div>
     </nav>
   );
