@@ -5,7 +5,7 @@ function ContactUs() {
   return (
     <section
       id="contact-us"
-      className="h-screen flex flex-col md:flex-row items-center justify-center bg-gray-50 py-10"
+      className="h-screen flex flex-col md:flex-row items-center justify-center bg-gray-50 py-10 relative"
     >
       {/* Left Content - Form */}
       <div className="w-full md:w-1/2 p-6 md:p-8 max-w-lg mx-auto">
